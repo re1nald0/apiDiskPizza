@@ -88,6 +88,8 @@ async function login(req, res) {
 
 }
 
+//---------------------------------------------------------------------------------------
+
 async function getAllUsuario(req, res) {
 
     try {
@@ -129,7 +131,7 @@ async function getUsuario(req, res) {
                 res.status(200).json(result);
             }
         })
-        .then(error => {
+        .catch(error => {
             res.status(500).send(error);
         })
 
@@ -140,22 +142,77 @@ async function getUsuario(req, res) {
 
 }
 
+//--------------------------------------------------------------------------------------------
+
 async function getFuncionario(req, res) {
 
     try {
 
-        
-
+        await usuario.findAll({
+            where: {
+                idUsuario: req.body.idUsuario,
+                funcionarioIdFuncionario: req.body.idFuncionario
+            },
+            include: {
+                model: funcionario,
+                where: {
+                    idFuncionario: req.body.idFuncionario
+                }
+            }
+        })
+        .then(result => {
+            if(result.length > 0) {
+                res.status(200).json(result);
+            }
+            else {
+                res.status(404).send();
+            }
+        })
+        .catch(error => {
+            console.log(error);
+            res.status(500).send(error);
+        })
 
     } catch(e) {
         console.log(e);
         res.status(500).send(e);
     }
 
-
 }
 
 async function getCliente(req, res) {
+
+    try {
+
+        await usuario.findAll({
+            where: {
+                idUsuario: req.body.idUsuario,
+                clienteIdCliente: req.body.idCliente
+            },
+            include: {
+                model: cliente,
+                where: {
+                    idCliente: req.body.idCliente
+                }
+            }
+        })
+        .then(result => {
+            if(result.length > 0) {
+                res.status(200).json(result);
+            }
+            else {
+                res.status(404).send();
+            }
+        })
+        .catch(error => {
+            console.log(error);
+            res.status(500).send(error);
+        })
+
+    } catch(e) {
+        console.log(e);
+        res.status(500).send(e);
+    }
 
 }
 
@@ -327,12 +384,12 @@ async function updateUsuario(req, res) {
         if(updatedUserData.email != undefined) {
             user.email = updatedUserData.email;
         }
-        if(updatedUserData.funcionarioIdFuncionario != undefined) {
-            user.funcionarioIdFuncionario = updatedUserData.funcionarioIdFuncionario;
-        }
-        if(updatedUserData.clienteIdCliente != undefined) {
-            user.clienteIdCliente = updatedUserData.clienteIdCliente;
-        }
+        // if(updatedUserData.funcionarioIdFuncionario != undefined) {
+        //     user.funcionarioIdFuncionario = updatedUserData.funcionarioIdFuncionario;
+        // }
+        // if(updatedUserData.clienteIdCliente != undefined) {
+        //     user.clienteIdCliente = updatedUserData.clienteIdCliente;
+        // }
 
         await usuario.update(user, {
             where: {
@@ -352,6 +409,175 @@ async function updateUsuario(req, res) {
     }
 
 }
+
+async function updateFuncionario(req, res) {
+
+    try {
+
+       usuario.findAll({
+           where: {
+               idUsuario: req.body.idUsuario
+           }
+       })
+       .then(async data => {
+           if(req.body.email != undefined) {
+                data.email = req.body.email;
+           
+                usuario.update(data, {
+                    where: {
+                        idUsuario: req.body.idUsuario
+                    }
+                })
+                .then(newData => {
+                    res.status(200).json(newData);
+                })
+                .catch(error => {
+                    console.log("Erro no update de usuario/funcionario");
+                    console.log("------------------------------------");
+                    console.log(error);
+                    res.status(500).send(error);
+                })
+            }
+       })
+       .catch(error => {
+           console.log(error);
+           res.status(404).send(error);
+       })
+
+       funcionario.findAll({
+           where: {
+               idFuncionario: req.body.funcionarioIdFuncionario
+           }
+       })
+       .then(async data => {
+            let flag = false;
+
+            if(req.body.nome != undefined) {
+                data.nome = req.body.nome;
+                flag = true;
+            }
+            if(req.body.telefone != undefined) {
+                data.telefone = req.body.telefone;
+                flag = true;
+            }
+            if(req.body.idCargo != undefined) {
+                data.idCargo = req.body.idCargo;
+                flag = true;
+            }
+
+            if(flag) {
+                funcionario.update(data, {
+                    where: {
+                        idFuncionario: req.body.funcionarioIdFuncionario
+                    }
+                })
+                .then(newData => {
+                    res.status(200).json(newData);
+                })
+                .catch(error => {
+                    console.log("Erro no update de funcionario");
+                    console.log("-----------------------------");
+                    console.log(error);
+                    res.status(500).send(error);
+                })
+            }
+       })
+       .catch(error => {
+           console.log(error);
+           res.status(404).send(error);
+       })
+
+    } catch(e) {
+        console.log(e);
+        res.status(500).send(e);
+    }
+
+}
+
+async function updateCliente(req, res) {
+
+    try {
+
+        usuario.findAll({
+            where: {
+                idUsuario: req.body.idUsuario
+            }
+        })
+        .then(async data => {
+            if(req.body.email != undefined) {
+                 data.email = req.body.email;
+            
+                 usuario.update(data, {
+                     where: {
+                         idUsuario: req.body.idUsuario
+                     }
+                 })
+                 .then(newData => {
+                     res.status(200).json(newData);
+                 })
+                 .catch(error => {
+                     console.log("Erro no update de usuario/cliente");
+                     console.log("------------------------------------");
+                     console.log(error);
+                     res.status(500).send(error);
+                 })
+             }
+        })
+        .catch(error => {
+            console.log(error);
+            res.status(404).send(error);
+        })
+ 
+        cliente.findAll({
+            where: {
+                idCliente: req.body.clienteIdCliente
+            }
+        })
+        .then(async data => {
+             let flag = false;
+ 
+             if(req.body.nome != undefined) {
+                 data.nome = req.body.nome;
+                 flag = true;
+             }
+             if(req.body.telefone != undefined) {
+                 data.telefone = req.body.telefone;
+                 flag = true;
+             }
+             if(req.body.endereco != undefined) {
+                 data.endereco = req.body.endereco;
+                 flag = true;
+             }
+ 
+             if(flag) {
+                 cliente.update(data, {
+                     where: {
+                         idCliente: req.body.clienteIdCliente
+                     }
+                 })
+                 .then(newData => {
+                     res.status(200).json(newData);
+                 })
+                 .catch(error => {
+                     console.log("Erro no update de cliente");
+                     console.log("-----------------------------");
+                     console.log(error);
+                     res.status(500).send(error);
+                 })
+             }
+        })
+        .catch(error => {
+            console.log(error);
+            res.status(404).send(error);
+        })
+ 
+     } catch(e) {
+         console.log(e);
+         res.status(500).send(e);
+     }
+
+}
+
 
 async function deleteUsuario(req, res) {
 
@@ -391,12 +617,16 @@ async function deleteUsuario(req, res) {
 module.exports = {
     alterarSenha,
     login,
+    newUsuario,
     newFuncionario,
     newCliente,
     getAllUsuario,
     getUsuario,
-    newUsuario,
+    getFuncionario,
+    getCliente,
     updateUsuario,
+    updateFuncionario,
+    updateCliente,
     deleteUsuario
 }
 
