@@ -2,11 +2,11 @@ Definicao do formato dos json a serem mandados nas requisicoes e algumas definic
 
 -------STATUS PEDIDO---------------------------
 
-1- Recebido
+1- Pedido recebido
 2- Em preparo
 3- Esperando sair para entrega
 4- Saiu para entrega
-5- Recebido
+5- Pedido entregue
 
 ------ALTERAR SENHA----------------------------
 {
