@@ -32,7 +32,25 @@ Definicao do formato dos json a serem mandados nas requisicoes e algumas definic
     clienteIdCliente
 }
 
-----UPDATE FUNCIONARIO-----------------------
+----NEW CLIENTE--------------------------------
+{
+    email,
+    senha,
+    nome,
+    telefone,
+    endereco
+}
+
+-----NEW FUNCIONARIO--------------------------
+{
+    email,
+    senha,
+    nome,
+    telefone,
+    cargoIdCargo <--Id do cargo na table cargo
+}
+
+----UPDATE FUNCIONARIO------------------------
 {
     idUsuario,
     email,
