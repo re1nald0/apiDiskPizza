@@ -23,13 +23,13 @@ Definicao do formato dos json a serem mandados nas requisicoes e algumas definic
 -----BUSCAR FUNCIONARIO------------------------
 {
     idUsuario,
-    idFuncionario
+    funcionarioIdFuncionario
 }
 
 ----BUSCAR CLIENTE----------------------------
 {
     idUsuario,
-    idCliente
+    clienteIdCliente
 }
 
 ----UPDATE FUNCIONARIO-----------------------
