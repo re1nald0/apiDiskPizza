@@ -350,18 +350,19 @@ async function newCliente(req, res) {
     
         await cliente.create(clienteData)
         .then(result => {
-            usuario.findAll({
-                where: {
-                    idUsuario: usuarioData.email
-                }
+            usuarioData.clienteIdCliente = result.idCliente;
+            usuario.create(usuarioData)
+            .then(data => {
+                res.status(200).json(data);
             })
-            .then(async resultUsuario => {
-                usuarioData.clienteIdCliente = result.idCliente;
-                usuario.create(usuarioData)
-                .then(data => {
-                    res.status(200).json(data);
-                })
+            .catch(error => {
+                console.log(error);
+                res.status(500).send(error);
             })
+        })
+        .catch(error => {
+            console.log(error);
+            res.status(500).send(error);
         })
 
     } catch(e) {
@@ -395,23 +396,24 @@ async function newFuncionario(req, res) {
         let funcionarioData = {
             nome: req.body.nome,
             telefone: req.body.telefone,
-            endereco: req.body.endereco
+            cargo: req.body.cargoIdCargo
         };
     
         await funcionario.create(funcionarioData)
         .then(result => {
-            usuario.findAll({
-                where: {
-                    idUsuario: usuarioData.email
-                }
+            usuarioData.funcionarioIdFuncionario = result.idFuncionario;
+            usuario.create(usuarioData)
+            .then(data => {
+                res.status(200).json(data);
             })
-            .then(async resultUsuario => {
-                usuarioData.funcionarioIdFuncionario = result.idFuncionario;
-                usuario.create(usuarioData)
-                .then(data => {
-                    res.status(200).json(data);
-                })
+            .catch(error => {
+                console.log(error);
+                res.status(500).send(error);
             })
+        })
+        .catch(error => {
+            console.log(error);
+            res.status(500).send(error);
         })
 
     } catch(e) {

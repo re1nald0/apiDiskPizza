@@ -73,10 +73,10 @@ Definicao do formato dos json a serem mandados nas requisicoes e algumas definic
 -----DELETE FUNCIONARIO-------------------------------
 URL/deleteFuncionario/{idUsuario}
 
--> Deleta o funcionario ou o cliente a partir da FK na table usuario
+-> Deleta o funcionario a partir da FK na table usuario
 
 -----DELETE CLIENTE-----------------------------------
 URL/deleteCliente/{idUsuario}
 
--> Deleta o funcionario ou o cliente a partir da FK na table usuario
+-> Deleta o funcionario a partir da FK na table usuario
 
