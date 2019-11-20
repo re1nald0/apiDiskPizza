@@ -29,9 +29,6 @@ module.exports = (sequelize, DataTypes) => {
                 model: models.cliente,
                 key: 'idCliente'
             }
-        },
-        tipo: {
-            type: DataTypes.INTEGER
         }
     }, {
         freezeTableName: true,

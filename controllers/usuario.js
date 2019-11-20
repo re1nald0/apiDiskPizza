@@ -610,11 +610,11 @@ async function updateCliente(req, res) {
 }
 
 
-async function deleteUsuario(req, res) {
+async function deleteFuncionario(req, res) {
 
     try {
 
-        let id = req.usuario.idUsuario;
+        let id = req.params.idUsuario;
 
         usuario.findAll({
             where: {
@@ -622,14 +622,82 @@ async function deleteUsuario(req, res) {
             }
         })
         .then(async result => {
+            let idFunc = result.funcionarioIdFuncionario;
+
             if(result.length == 1) {
                 await usuario.destroy({
                     where: {
-                    idUsuario: id
+                        idUsuario: id
                     }
                 })
                 .then(deleted => {
-                    res.status(200).json({"message": "Usuario removido com sucesso", "data": deleted})
+                    funcionario.destroy({
+                        where: {
+                            idFuncionario: idFunc
+                        }
+                    })
+                    .then(finalDelete => {
+                        res.status(200).json({"message": "Usuario removido com sucesso", "data": deleted+finalDelete});
+                    })
+                    .catch(error => {
+                        console.log(error);
+                        res.status(500).send("Erro ao tentar remover da table funcionario", error);
+                    })
+                })
+                .catch(error => {
+                    console.log(error);
+                    res.status(500).send("Erro ao tentar remover da table usuario", error);
+                })
+            }
+            else {
+                res.send(404).send("Erro ao remover registros.");
+            }
+        })
+
+    } catch(e) {
+        console.log(e);
+        res.status(500).send(e);
+    }
+
+}
+
+async function deleteCliente(req, res) {
+
+    try {
+
+        let id = req.params.idUsuario;
+
+        usuario.findAll({
+            where: {
+                idUsuario: id
+            }
+        })
+        .then(async result => {
+            let idCli = result.clienteIdCliente;
+
+            if(result.length == 1) {
+                await usuario.destroy({
+                    where: {
+                        idUsuario: id
+                    }
+                })
+                .then(deleted => {
+                    cliente.destroy({
+                        where: {
+                            idCliente: idCli
+                        }
+                    })
+                    .then(finalDelete => {
+                        res.status(200).json({"message": "Usuario removido com sucesso", "data": deleted+finalDelete});
+                    })
+                    .catch(error => {
+                        console.log(error);
+                        res.status(500).send("Erro ao tentar remover da table funcionario", error);
+                    })
+                })
+                .catch(error => {
+                    console.log(error);
+                    res.status(500).send("Erro ao tentar remover da table usuario", error);
                 })
             }
             else {
@@ -660,7 +728,8 @@ module.exports = {
     updateUsuario,
     updateFuncionario,
     updateCliente,
-    deleteUsuario
+    deleteFuncionario,
+    deleteCliente
 }
 
 //-----------------------------------MACROS HE HE HE HE HE------------------------

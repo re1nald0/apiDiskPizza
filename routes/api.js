@@ -39,13 +39,16 @@ try {
     // router.put('/updateUsuario', verifyJWT, usuario.updateUsuario);
     // router.delete('/deleteUsuario', verifyJWT, usuario.deleteUsuario);
 
+    router.get('/getAllFuncionario', verifyJWT, usuario.getAllFuncionario);
+    router.get('/getAllCliente', verifyJWT, usuario.getAllCliente);
     router.get('/getFuncionario', verifyJWT, usuario.getFuncionario);
     router.get('/getCliente', verifyJWT, usuario.getCliente);
     router.post('/newFuncionario', usuario.newFuncionario);
     router.post('/newCliente', usuario.newCliente);
     router.put('/updateFuncionario', verifyJWT, usuario.updateFuncionario);
     router.put('/updateCliente', verifyJWT, usuario.updateCliente);
-    router.delete('/deleteUsuario/:id', verifyJWT, usuario.deleteUsuario);
+    router.delete('/deleteFuncionario/:idUsuario', usuario.deleteFuncionario);
+    router.delete('/deleteCliente/:idUsuario', usuario.deleteCliente);
 
     router.post('/login', usuario.login);
     router.post('/alterarSenha', verifyJWT, usuario.alterarSenha);
