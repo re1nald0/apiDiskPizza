@@ -33,21 +33,27 @@ try {
     //app.use(verifyJWT);
 
 //----------------ROTAS USER-------------------------------------------------
-    router.get('/allUsuario', verifyJWT, usuario.getAllUsuario);
-    router.get('/getUsuario', verifyJWT, usuario.getUsuario);
-    router.post('/newUsuario', verifyJWT, usuario.newUsuario);
-    router.put('/updateUsuario', verifyJWT, usuario.updateUsuario);
-    router.delete('/deleteUsuario', verifyJWT, usuario.deleteUsuario);
+    // router.get('/allUsuario', verifyJWT, usuario.getAllUsuario);
+    // router.get('/getUsuario', verifyJWT, usuario.getUsuario);
+    // router.post('/newUsuario', verifyJWT, usuario.newUsuario);
+    // router.put('/updateUsuario', verifyJWT, usuario.updateUsuario);
+    // router.delete('/deleteUsuario', verifyJWT, usuario.deleteUsuario);
+
+    router.get('/getFuncionario', verifyJWT, usuario.getFuncionario);
+    router.get('/getCliente', verifyJWT, usuario.getCliente);
+    router.post('/newFuncionario', usuario.newFuncionario);
     router.post('/newCliente', usuario.newCliente);
+    router.put('/updateFuncionario', verifyJWT, usuario.updateFuncionario);
+    router.put('/updateCliente', verifyJWT, usuario.updateCliente);
+    router.delete('/deleteUsuario/:id', verifyJWT, usuario.deleteUsuario);
 
     router.post('/login', usuario.login);
-    router.post('/alterarSenha', usuario.alterarSenha);
+    router.post('/alterarSenha', verifyJWT, usuario.alterarSenha);
 
 //----------------ROTAS CUPOM------------------------------------------------
     router.get('/cupom', verifyJWT, cupom.getCupom);
 
 //----------------ROTAS CLIENTE----------------------------------------------
-    router.get('/clientes', verifyJWT, cliente.getCliente);
 
 
 //-----------------ROTAS BORDA------------------------------------------------
@@ -72,4 +78,4 @@ catch(e) {
 module.exports = router;
 
 
-//   curl --header "Content-Type: application/json" --request POST --data '{"descricao":"bordateste1","preco":"50"}' http://localhost:8080/newBora
+//   curl --header "Content-Type: application/json" --request POST --data '{"descricao":"bordateste1","preco":"50"}' http://localhost:8080/newBorda

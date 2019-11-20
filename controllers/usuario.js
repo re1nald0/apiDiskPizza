@@ -216,6 +216,64 @@ async function getCliente(req, res) {
 
 }
 
+async function getAllFuncionario(req, res) {
+
+    try {
+
+        usuario.findAll({
+            include: {
+                model: funcionario
+            }
+        })
+        .then(result => {
+            if(result.length <= 0) {
+                res.status(404).send("Nenhum funcionario encontrado");
+            }
+            else {
+                res.status(200).json(result);
+            }
+        })
+        .catch(error => {
+            console.log(error);
+            res.status(500).send(error);
+        })
+
+    } catch(e) {
+        console.log(e);
+        res.status(500).send(e);
+    }
+
+}
+
+async function getAllCliente(req, res) {
+
+    try {
+
+        usuario.findAll({
+            include: {
+                model: cliente
+            }
+        })
+        .then(result => {
+            if(result.length <= 0) {
+                res.status(404).send("Nenhum cliente encontrado");
+            }
+            else {
+                res.status(200).json(result);
+            }
+        })
+        .catch(error => {
+            console.log(error);
+            res.status(500).send(error);
+        })
+
+    } catch(e) {
+        console.log(e);
+        res.status(500).send(e);
+    }
+
+}
+
 async function newUsuario(req, res) {
 
     try {
@@ -595,6 +653,8 @@ module.exports = {
     newCliente,
     getAllUsuario,
     getUsuario,
+    getAllFuncionario,
+    getAllCliente,
     getFuncionario,
     getCliente,
     updateUsuario,
