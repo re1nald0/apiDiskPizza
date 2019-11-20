@@ -420,24 +420,23 @@ async function updateFuncionario(req, res) {
            }
        })
        .then(async data => {
-           if(req.body.email != undefined) {
-                data.email = req.body.email;
-           
-                usuario.update(data, {
-                    where: {
-                        idUsuario: req.body.idUsuario
-                    }
-                })
-                .then(newData => {
-                    res.status(200).json(newData);
-                })
-                .catch(error => {
-                    console.log("Erro no update de usuario/funcionario");
-                    console.log("------------------------------------");
-                    console.log(error);
-                    res.status(500).send(error);
-                })
-            }
+            data.email = req.body.email;
+        
+            usuario.update(data, {
+                where: {
+                    idUsuario: req.body.idUsuario
+                }
+            })
+            .then(newData => {
+                res.status(200).json(newData);
+            })
+            .catch(error => {
+                console.log("Erro no update de usuario/funcionario");
+                console.log("------------------------------------");
+                console.log(error);
+                res.status(500).send(error);
+            })
+            
        })
        .catch(error => {
            console.log(error);
@@ -450,37 +449,25 @@ async function updateFuncionario(req, res) {
            }
        })
        .then(async data => {
-            let flag = false;
-
-            if(req.body.nome != undefined) {
-                data.nome = req.body.nome;
-                flag = true;
-            }
-            if(req.body.telefone != undefined) {
-                data.telefone = req.body.telefone;
-                flag = true;
-            }
-            if(req.body.idCargo != undefined) {
-                data.idCargo = req.body.idCargo;
-                flag = true;
-            }
-
-            if(flag) {
-                funcionario.update(data, {
-                    where: {
-                        idFuncionario: req.body.funcionarioIdFuncionario
-                    }
-                })
-                .then(newData => {
-                    res.status(200).json(newData);
-                })
-                .catch(error => {
-                    console.log("Erro no update de funcionario");
-                    console.log("-----------------------------");
-                    console.log(error);
-                    res.status(500).send(error);
-                })
-            }
+            
+            data.nome = req.body.nome;
+            data.telefone = req.body.telefone;
+            data.idCargo = req.body.idCargo;
+                    
+            funcionario.update(data, {
+                where: {
+                    idFuncionario: req.body.funcionarioIdFuncionario
+                }
+            })
+            .then(newData => {
+                res.status(200).json(newData);
+            })
+            .catch(error => {
+                console.log("Erro no update de funcionario");
+                console.log("-----------------------------");
+                console.log(error);
+                res.status(500).send(error);
+            })
        })
        .catch(error => {
            console.log(error);
@@ -504,7 +491,6 @@ async function updateCliente(req, res) {
             }
         })
         .then(async data => {
-            if(req.body.email != undefined) {
                  data.email = req.body.email;
             
                  usuario.update(data, {
@@ -521,7 +507,6 @@ async function updateCliente(req, res) {
                      console.log(error);
                      res.status(500).send(error);
                  })
-             }
         })
         .catch(error => {
             console.log(error);
@@ -534,22 +519,11 @@ async function updateCliente(req, res) {
             }
         })
         .then(async data => {
-             let flag = false;
  
-             if(req.body.nome != undefined) {
                  data.nome = req.body.nome;
-                 flag = true;
-             }
-             if(req.body.telefone != undefined) {
                  data.telefone = req.body.telefone;
-                 flag = true;
-             }
-             if(req.body.endereco != undefined) {
                  data.endereco = req.body.endereco;
-                 flag = true;
-             }
  
-             if(flag) {
                  cliente.update(data, {
                      where: {
                          idCliente: req.body.clienteIdCliente
@@ -564,7 +538,6 @@ async function updateCliente(req, res) {
                      console.log(error);
                      res.status(500).send(error);
                  })
-             }
         })
         .catch(error => {
             console.log(error);

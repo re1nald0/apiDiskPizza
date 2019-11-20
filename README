@@ -1,0 +1,54 @@
+Definicao do formato dos json a serem mandados nas requisicoes e algumas definicoes do protocolo:
+
+-------STATUS PEDIDO---------------------------
+
+1- Recebido
+2- Em preparo
+3- Esperando sair para entrega
+4- Saiu para entrega
+5- Recebido
+
+------ALTERAR SENHA----------------------------
+{
+    email,
+    novaSenha
+}
+
+------LOGIN------------------------------------
+{
+    email,
+    senha
+}
+
+-----BUSCAR FUNCIONARIO------------------------
+{
+    idUsuario,
+    idFuncionario
+}
+
+----BUSCAR CLIENTE----------------------------
+{
+    idUsuario,
+    idCliente
+}
+
+----UPDATE FUNCIONARIO-----------------------
+{
+    idUsuario,
+    email,
+    funcionarioIdFuncionario,
+    nome,
+    telefone,
+    idCargo
+}
+
+----UPDATE CLIENTE--------------------------------
+{
+    idUsuario,
+    email,
+    clienteIdCliente,
+    nome,
+    telefone,
+    endereco
+}
+
