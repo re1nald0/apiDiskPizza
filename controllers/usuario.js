@@ -474,7 +474,7 @@ async function updateFuncionario(req, res) {
 
     try {
 
-       usuario.findAll({
+       await usuario.findAll({
            where: {
                idUsuario: req.body.idUsuario
            }
@@ -482,7 +482,7 @@ async function updateFuncionario(req, res) {
        .then(async data => {
             data.email = req.body.email;
         
-            usuario.update(data, {
+            await usuario.update(data, {
                 where: {
                     idUsuario: req.body.idUsuario
                 }
@@ -503,7 +503,7 @@ async function updateFuncionario(req, res) {
            res.status(404).send(error);
        })
 
-       funcionario.findAll({
+       await funcionario.findAll({
            where: {
                idFuncionario: req.body.funcionarioIdFuncionario
            }
@@ -514,7 +514,7 @@ async function updateFuncionario(req, res) {
             data.telefone = req.body.telefone;
             data.idCargo = req.body.idCargo;
                     
-            funcionario.update(data, {
+            await funcionario.update(data, {
                 where: {
                     idFuncionario: req.body.funcionarioIdFuncionario
                 }
@@ -545,59 +545,59 @@ async function updateCliente(req, res) {
 
     try {
 
-        usuario.findAll({
+        await usuario.findAll({
             where: {
                 idUsuario: req.body.idUsuario
             }
         })
         .then(async data => {
-                 data.email = req.body.email;
-            
-                 usuario.update(data, {
-                     where: {
-                         idUsuario: req.body.idUsuario
-                     }
-                 })
-                 .then(newData => {
-                     res.status(200).json(newData);
-                 })
-                 .catch(error => {
-                     console.log("Erro no update de usuario/cliente");
-                     console.log("------------------------------------");
-                     console.log(error);
-                     res.status(500).send(error);
-                 })
+            data.email = req.body.email;
+    
+            await usuario.update(data, {
+                where: {
+                    idUsuario: req.body.idUsuario
+                }
+            })
+            .then(newData => {
+                res.status(200).json(newData);
+            })
+            .catch(error => {
+                console.log("Erro no update de usuario/cliente");
+                console.log("------------------------------------");
+                console.log(error);
+                res.status(500).send(error);
+            })
         })
         .catch(error => {
             console.log(error);
             res.status(404).send(error);
         })
  
-        cliente.findAll({
+        await cliente.findAll({
             where: {
                 idCliente: req.body.clienteIdCliente
             }
         })
         .then(async data => {
  
-                 data.nome = req.body.nome;
-                 data.telefone = req.body.telefone;
-                 data.endereco = req.body.endereco;
- 
-                 cliente.update(data, {
-                     where: {
-                         idCliente: req.body.clienteIdCliente
-                     }
-                 })
-                 .then(newData => {
-                     res.status(200).json(newData);
-                 })
-                 .catch(error => {
-                     console.log("Erro no update de cliente");
-                     console.log("-----------------------------");
-                     console.log(error);
-                     res.status(500).send(error);
-                 })
+            data.nome = req.body.nome;
+            data.telefone = req.body.telefone;
+            data.endereco = req.body.endereco;
+
+            await cliente.update(data, {
+                where: {
+                    idCliente: req.body.clienteIdCliente
+                }
+            })
+            .then(newData => {
+                res.status(200).json(newData);
+            })
+            .catch(error => {
+                console.log("Erro no update de cliente");
+                console.log("-----------------------------");
+                console.log(error);
+                res.status(500).send(error);
+            })
         })
         .catch(error => {
             console.log(error);
@@ -618,7 +618,7 @@ async function deleteFuncionario(req, res) {
 
         let id = req.params.idUsuario;
 
-        usuario.findAll({
+        await usuario.findAll({
             where: {
                 idUsuario: id
             }
@@ -632,8 +632,8 @@ async function deleteFuncionario(req, res) {
                         idUsuario: id
                     }
                 })
-                .then(deleted => {
-                    funcionario.destroy({
+                .then(async deleted => {
+                    await funcionario.destroy({
                         where: {
                             idFuncionario: idFunc
                         }
@@ -669,7 +669,7 @@ async function deleteCliente(req, res) {
 
         let id = req.params.idUsuario;
 
-        usuario.findAll({
+        await usuario.findAll({
             where: {
                 idUsuario: id
             }
@@ -683,8 +683,8 @@ async function deleteCliente(req, res) {
                         idUsuario: id
                     }
                 })
-                .then(deleted => {
-                    cliente.destroy({
+                .then(async deleted => {
+                    await cliente.destroy({
                         where: {
                             idCliente: idCli
                         }

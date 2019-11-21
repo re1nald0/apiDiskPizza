@@ -57,7 +57,7 @@ async function newSabor(req, res) {
             preco: req.body.preco,
             ingredientes: req.body.ingredientes,
             categoria: req.body.categoria,
-            preco: req.body.preco
+            custo: req.body.custo
         };
     
         sabor.create(saborData)
@@ -123,7 +123,7 @@ async function deleteSabor(req, res) {
 
     try {
 
-        let id = req.body.idSabor;
+        let id = req.params.idSabor;
 
         sabor.findAll({
             where: {

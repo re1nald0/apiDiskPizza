@@ -92,8 +92,32 @@ URL/deleteCliente/{idUsuario}
     ]
 }
 
-"tamanho": 1,"descricao: "Atum e costela","idBorda": 2,"sabores": [2,3]
+- {"tamanho": 1,"descricao": "Atum e costela","idBorda": 2,"sabores": [2,3]}
 
+------GET PIZZA------------------------------------------
+{
+    idPizza
+}
+
+------DELETE PIZZA--------------------------------------
+URL/deletePizza/{idPizza}
+
+------NEW SABOR / UPDATE SABOR--------------------------
+{
+    descricao,
+    preco,
+    ingredientes,
+    categoria,
+    custo
+}
+
+-----GET SABOR-----------------------------------------
+{
+    idSabor
+}
+
+-------DELETE SABOR------------------------------------
+URL/deleteSabor/{idSabor}
 
 
 

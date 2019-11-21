@@ -60,13 +60,14 @@ try {
     router.get('/getAllPizza', pizza.getAllPizza);
     router.get('/getPizza', pizza.getPizza);
     router.post('/newPizza', pizza.newPizza);
-
+    //router.put('/updatePizza', pizza.updatePizza);
+    router.delete('/deletePizza/:idPizza', pizza.deletePizza);
 
 //-----------------ROTAS BORDA------------------------------------------------
     router.get('/allBordas', verifyJWT, borda.getAllBorda);
     router.get('/borda', verifyJWT, borda.getBorda);
     router.post('/newBorda', verifyJWT, borda.newBorda);
-    router.delete('/deleteBorda', verifyJWT, borda.deleteBorda);
+    router.delete('/deleteBorda/:idBorda', verifyJWT, borda.deleteBorda);
 
 //----------------ROTAS SABORES-----------------------------------------------
 
@@ -74,7 +75,7 @@ try {
     router.get('/getSabor', verifyJWT, sabor.getSabor);
     router.post('/newSabor', verifyJWT, sabor.newSabor);
     router.put('/updateSabor', verifyJWT, sabor.updateSabor);
-    router.delete('/deleteSabor', verifyJWT, sabor.deleteSabor);
+    router.delete('/deleteSabor/:idSabor', verifyJWT, sabor.deleteSabor);
     
     
     

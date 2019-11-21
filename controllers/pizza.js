@@ -72,30 +72,41 @@ async function newPizza(req, res) {
             descricao: req.body.descricao,
             bordaIdBorda: req.body.idBorda
         };
+        let arraySabores = req.body.sabores;
+        
+        let responseData;
+        let associativeData = new Array();
 
         console.log(pizzaData);
 
-        let arraySabores = req.body.sabores;
-        
-
-        pizza.create(pizzaData)
+        await pizza.create(pizzaData)
         .then(async createdData => {
-            //Resolver problema de acessar valores do array que vem dentro do json
-            arraySabores.forEach(saborId => {
+            responseData = createdData;
+
+            await arraySabores.forEach(async saborId => {
+
                 let saborDaPizza = {
                     pizzaIdPizza: createdData.idPizza,
                     saborIdSabor: saborId
                 };
+    
+                await saborPizza.create(saborDaPizza)
+                .then(async saborPizzaCreated => {
+                    associativeData.push(JSON.parse(JSON.stringify(saborPizzaCreated)))
+                    //Object.assign(associativeData, JSON.parse(JSON.stringify(saborPizzaCreated)));
 
-                saborPizza.create(saborDaPizza)
-                .then(saborPizzaCreated => {
-                    console.log(saborPizzaCreated);
                 })
                 .catch(error => {
                     console.log(error);
                     res.status(500).send(error);
                 })
             });
+
+            Object.assign(responseData, associativeData);
+            console.log(associativeData);
+
+            res.status(200).json(responseData);
+   
         })
         .catch(error => {
             console.log(error);
@@ -115,6 +126,8 @@ async function updatePizza(req, res) {
 
         
 
+        
+
     } catch(e) {
         console.log(e);
         res.status(500).send(e);
@@ -126,7 +139,33 @@ async function deletePizza(req, res) {
 
     try {
 
-        
+        let id = req.params.idPizza;
+
+        await pizza.destroy({
+            where: {
+                idPizza: id
+            }
+        })
+        .then(async deletedData => {
+            let deletedId = deletedData.idPizza;
+
+            await saborPizza.destroy({
+                where: {
+                    pizzaIdPizza: deletedId
+                }
+            })
+            .then(associativeDeletedData => {
+                res.status(200).json(deletedData + associativeDeletedData);
+            })
+            .catch(error => {
+                console.log(error);
+                res.status(500).send(error);
+            })
+        })
+        .catch(error => {
+            console.log(error);
+            res.status(500).send(error);
+        })
 
     } catch(e) {
         console.log(e);
