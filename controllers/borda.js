@@ -95,6 +95,44 @@ async function newBorda(req, res) {
     }
 }
 
+async function updateBorda(req, res) {
+
+    try {
+
+        await borda.findAll({
+            where: {
+                idBorda: req.body.idBorda
+            }
+        })
+        .then(async data => {
+            data.descricao = req.body.descricao;
+            data.preco = req.body.preco;
+
+            await borda.update(data, {
+                where: {
+                    idBorda: req.body.idBorda
+                }
+            })
+            .then(newData => {
+                res.status(200).json(newData);
+            })
+            .catch(error => {
+                console.log(error);
+                res.status(500).send(error);
+            })
+        })
+        .catch(error => {
+            console.log(error);
+            res.status(500).send(error);
+        })
+
+    } catch(e) {
+        console.log(e);
+        res.status(500).send(e);
+    }
+
+}
+
 async function deleteBorda(req, res) {
 
     try {
@@ -132,5 +170,6 @@ module.exports = {
     getAllBorda,
     getBorda,
     newBorda,
+    updateBorda,
     deleteBorda
 }
