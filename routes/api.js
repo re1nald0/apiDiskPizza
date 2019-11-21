@@ -40,15 +40,15 @@ try {
     // router.delete('/deleteUsuario', verifyJWT, usuario.deleteUsuario);
 
     router.get('/getAllFuncionario', verifyJWT, usuario.getAllFuncionario);
-    router.get('/getAllCliente', verifyJWT, usuario.getAllCliente);
+    router.get('/getAllCliente', usuario.getAllCliente);
     router.get('/getFuncionario', verifyJWT, usuario.getFuncionario);
     router.get('/getCliente', verifyJWT, usuario.getCliente);
     router.post('/newFuncionario', usuario.newFuncionario);
     router.post('/newCliente', usuario.newCliente);
     router.put('/updateFuncionario', verifyJWT, usuario.updateFuncionario);
     router.put('/updateCliente', verifyJWT, usuario.updateCliente);
-    router.delete('/deleteFuncionario/:idUsuario', usuario.deleteFuncionario);
-    router.delete('/deleteCliente/:idUsuario', usuario.deleteCliente);
+    router.delete('/deleteFuncionario/:idUsuario', verifyJWT, usuario.deleteFuncionario);
+    router.delete('/deleteCliente/:idUsuario', verifyJWT, usuario.deleteCliente);
 
     router.post('/login', usuario.login);
     router.post('/alterarSenha', verifyJWT, usuario.alterarSenha);
@@ -56,7 +56,10 @@ try {
 //----------------ROTAS CUPOM------------------------------------------------
     router.get('/cupom', verifyJWT, cupom.getCupom);
 
-//----------------ROTAS CLIENTE----------------------------------------------
+//----------------ROTAS PIZZA----------------------------------------------
+    router.get('/getAllPizza', pizza.getAllPizza);
+    router.get('/getPizza', pizza.getPizza);
+    router.post('/newPizza', pizza.newPizza);
 
 
 //-----------------ROTAS BORDA------------------------------------------------
@@ -67,7 +70,11 @@ try {
 
 //----------------ROTAS SABORES-----------------------------------------------
 
-    
+    router.get('/getAllSabor', verifyJWT, sabor.getAllSabor);
+    router.get('/getSabor', verifyJWT, sabor.getSabor);
+    router.post('/newSabor', verifyJWT, sabor.newSabor);
+    router.put('/updateSabor', verifyJWT, sabor.updateSabor);
+    router.delete('/deleteSabor', verifyJWT, sabor.deleteSabor);
     
     
     

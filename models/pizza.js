@@ -13,7 +13,7 @@ module.exports = (sequelize, DataTypes) => {
         tamanho: {
             type: DataTypes.STRING(45)
         },
-        idBorda: {
+        bordaIdBorda: {
             type: DataTypes.INTEGER,
             references: {
                 model: models.borda,
@@ -27,20 +27,20 @@ module.exports = (sequelize, DataTypes) => {
         freezeTableName: true,
         tableName: 'pizza',
         timestamps: false
-    });
+    }); 
 
     pizza.associate = (models) => {
         pizza.sabor = pizza.belongsToMany(models.sabor, {
             through: models.saborPizza,
-            key: 'idPizza'
+            key: 'pizzaIdPizza'
         });
         pizza.comboPizza = pizza.belongsToMany(models.comboPizza, {
             through: models.comboPizza,
-            key: 'idPizza'
+            key: 'pizzaIdPizza'
         });
         pizza.pedido = pizza.belongsToMany(models.pedido, {
             through: models.pedidoPizza,
-            key: 'idPizza'
+            key: 'pizzaIdPizza'
         });
         pizza.borda = pizza.belongsTo(models.borda);
     }

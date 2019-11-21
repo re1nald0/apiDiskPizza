@@ -32,7 +32,7 @@ module.exports = (sequelize, DataTypes) => {
     sabor.associate = (models) => {
         sabor.pizza = sabor.belongsToMany(models.pizza, {
             through: models.saborPizza,
-            foreignKey: 'idSabor'
+            foreignKey: 'saborIdSabor'
         });
     }
 

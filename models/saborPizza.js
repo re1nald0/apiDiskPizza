@@ -10,14 +10,14 @@ module.exports = (sequelize, DataTypes) => {
             primaryKey: true,
             autoIncrement: true
         },
-        idPizza: {
+        pizzaIdPizza: {
             type: DataTypes.INTEGER,
             references: {
                 model: models.pizza,
                 key: 'idPizza'
             }
         },
-        idSabor: {
+        saborIdSabor: {
             type: DataTypes.INTEGER,
             references: {
                 model: models.sabor,

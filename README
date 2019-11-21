@@ -80,3 +80,21 @@ URL/deleteCliente/{idUsuario}
 
 -> Deleta o funcionario a partir da FK na table usuario
 
+-----NEW PIZZA----------------------------------------
+{
+    tamanho,
+    descricao,
+    idBorda,
+    sabores: [
+        idSabor,
+        idSabor,
+        ...
+    ]
+}
+
+"tamanho": 1,"descricao: "Atum e costela","idBorda": 2,"sabores": [2,3]
+
+
+
+
+
