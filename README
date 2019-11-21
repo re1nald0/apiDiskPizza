@@ -119,6 +119,36 @@ URL/deletePizza/{idPizza}
 -------DELETE SABOR------------------------------------
 URL/deleteSabor/{idSabor}
 
+------NEW PEDIDO---------------------------------------
+{
+    idCliente,
+    entrega,
+    pizzas: [
+        {
+            idPizza,
+            quantidade
+        }
+    ]
+}
+
+-------DELETE PEDIDO------------------------------------
+URL/deletePedido/:idPedido
+
+-------GET PEDIDO---------------------------------------
+{
+    idPedido
+}
+
+--------GET CLIENTE PEDIDOS-----------------------------
+{
+    idCliente
+}
+
+-------STATUS SAIU PARA ENTREGA-------------------------
+URL/statusSaiuParaEntrega/{idPedido}
+
+------STATUS PEDIDO ENTREGUE----------------------------
+URL/statusPedidoEntregue/{idPedido}
 
 
 

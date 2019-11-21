@@ -54,9 +54,13 @@ try {
     router.post('/alterarSenha', verifyJWT, usuario.alterarSenha);
 
 //----------------ROTAS PEDIDO-----------------------------------------------
+    router.get('/getPedido', verifyJWT, pedido.getPedido);
+    router.get('/getClientePedidos', verifyJWT, pedido.getClientePedidos);
+    router.post('/newPedido', verifyJWT, pedido.newPedido);
+    router.delete('/deletePedido', verifyJWT, pedido.deletePedido);
 
-
-
+    router.get('/statusSaiuParaEntrega/:idPedido', verifyJWT, pedido.statusSaiuParaEntrega);
+    router.get('/statusPedidoEntregue/:idPedido', verifyJWT, pedido.statusPedidoEntregue);
 
 //----------------ROTAS PIZZA------------------------------------------------
     router.get('/getAllPizza', verifyJWT, pizza.getAllPizza);
