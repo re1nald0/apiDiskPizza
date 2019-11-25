@@ -39,52 +39,52 @@ try {
     // router.put('/updateUsuario', verifyJWT, usuario.updateUsuario);
     // router.delete('/deleteUsuario', verifyJWT, usuario.deleteUsuario);
 
-    router.get('/getAllFuncionario', verifyJWT, usuario.getAllFuncionario);
-    router.get('/getAllCliente', verifyJWT, usuario.getAllCliente);
-    router.get('/getFuncionario', verifyJWT, usuario.getFuncionario);
-    router.get('/getCliente', verifyJWT, usuario.getCliente);
-    router.post('/newFuncionario', verifyJWT, usuario.newFuncionario);
+    router.get('/getAllFuncionario', usuario.getAllFuncionario);
+    router.get('/getAllCliente', usuario.getAllCliente);
+    router.get('/getFuncionario', usuario.getFuncionario);
+    router.get('/getCliente', usuario.getCliente);
+    router.post('/newFuncionario', usuario.newFuncionario);
     router.post('/newCliente', usuario.newCliente);
-    router.put('/updateFuncionario', verifyJWT, usuario.updateFuncionario);
-    router.put('/updateCliente', verifyJWT, usuario.updateCliente);
-    router.delete('/deleteFuncionario/:idUsuario', verifyJWT, usuario.deleteFuncionario);
-    router.delete('/deleteCliente/:idUsuario', verifyJWT, usuario.deleteCliente);
+    router.put('/updateFuncionario', usuario.updateFuncionario);
+    router.put('/updateCliente', usuario.updateCliente);
+    router.delete('/deleteFuncionario/:idUsuario', usuario.deleteFuncionario);
+    router.delete('/deleteCliente/:idUsuario', usuario.deleteCliente);
 
     router.post('/login', usuario.login);
-    router.post('/alterarSenha', verifyJWT, usuario.alterarSenha);
+    router.post('/alterarSenha', usuario.alterarSenha);
 
 //----------------ROTAS PEDIDO-----------------------------------------------
-    router.get('/getPedido', verifyJWT, pedido.getPedido);
-    router.get('/getClientePedidos', verifyJWT, pedido.getClientePedidos);
-    router.post('/newPedido', verifyJWT, pedido.newPedido);
-    router.delete('/deletePedido', verifyJWT, pedido.deletePedido);
+    router.get('/getPedido', pedido.getPedido);
+    router.get('/getClientePedidos', pedido.getClientePedidos);
+    router.post('/newPedido', pedido.newPedido);
+    router.delete('/deletePedido', pedido.deletePedido);
 
-    router.get('/statusSaiuParaEntrega/:idPedido', verifyJWT, pedido.statusSaiuParaEntrega);
-    router.get('/statusPedidoEntregue/:idPedido', verifyJWT, pedido.statusPedidoEntregue);
+    router.get('/statusSaiuParaEntrega/:idPedido', pedido.statusSaiuParaEntrega);
+    router.get('/statusPedidoEntregue/:idPedido', pedido.statusPedidoEntregue);
 
 //----------------ROTAS PIZZA------------------------------------------------
-    router.get('/getAllPizza', verifyJWT, pizza.getAllPizza);
-    router.get('/getPizza', verifyJWT, pizza.getPizza);
-    router.post('/newPizza', verifyJWT, pizza.newPizza);
-    //router.put('/updatePizza', verifyJWT, pizza.updatePizza);
-    router.delete('/deletePizza/:idPizza', verifyJWT, pizza.deletePizza);
+    router.get('/getAllPizza', pizza.getAllPizza);
+    router.get('/getPizza', pizza.getPizza);
+    router.post('/newPizza', pizza.newPizza);
+    //router.put('/updatePizza', pizza.updatePizza);
+    router.delete('/deletePizza/:idPizza', pizza.deletePizza);
 
 //-----------------ROTAS BORDA-----------------------------------------------
-    router.get('/allBordas', verifyJWT, borda.getAllBorda);
-    router.get('/borda', verifyJWT, borda.getBorda);
-    router.post('/newBorda', verifyJWT, borda.newBorda);
-    router.put('/updateBorda', verifyJWT, borda.updateBorda);
-    router.delete('/deleteBorda/:idBorda', verifyJWT, borda.deleteBorda);
+    router.get('/allBordas', borda.getAllBorda);
+    router.get('/borda', borda.getBorda);
+    router.post('/newBorda', borda.newBorda);
+    router.put('/updateBorda', borda.updateBorda);
+    router.delete('/deleteBorda/:idBorda', borda.deleteBorda);
 
 //----------------ROTAS SABORES----------------------------------------------
-    router.get('/getAllSabor', verifyJWT, sabor.getAllSabor);
-    router.get('/getSabor', verifyJWT, sabor.getSabor);
-    router.post('/newSabor', verifyJWT, sabor.newSabor);
-    router.put('/updateSabor', verifyJWT, sabor.updateSabor);
-    router.delete('/deleteSabor/:idSabor', verifyJWT, sabor.deleteSabor);
+    router.get('/getAllSabor', sabor.getAllSabor);
+    router.get('/getSabor', sabor.getSabor);
+    router.post('/newSabor', sabor.newSabor);
+    router.put('/updateSabor', sabor.updateSabor);
+    router.delete('/deleteSabor/:idSabor', sabor.deleteSabor);
 
 //----------------ROTAS CUPOM------------------------------------------------
-    //router.get('/cupom', verifyJWT, cupom.getCupom);
+    //router.get('/cupom', cupom.getCupom);
     
     
 
