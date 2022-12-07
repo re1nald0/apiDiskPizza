@@ -11,9 +11,9 @@
   "dependencies": {
     "basename": "^0.1.2",
     "bcrypt": "^3.0.6",
-    "body-parser": "^1.19.0",
+    "body-parser": "^1.20.1",
     "dotenv-safe": "^8.1.0",
-    "express": "^4.17.1",
+    "express": "^4.18.2",
     "jsonwebtoken": "^8.5.1",
     "mariadb": "^2.1.2",
     "moment": "^2.24.0",
